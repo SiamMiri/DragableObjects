@@ -1,28 +1,32 @@
 #include "mainwindow.h"
-#include "boxwidget.h"
-#include "mainwindow.h"
-#include "ui_mainwindow.h"
-#include <QInputDialog>
-#include <QPushButton>
-#include <QMouseEvent>
 
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
 {
+    setMinimumSize(800, 400);
     setMouseTracking(true); // Enable mouse move events
     QPushButton *addBoxButton = new QPushButton("Add Box", this);
     addBoxButton->setGeometry(10, 10, 80, 30);
+
+    m_pane = new Pane(0, 0, this);
+    qDebug() << this->width() << "   " << this->height();
+    m_pane->setGeometry(this->width()/3, 10, (this->width()/3)*2, this->height() - 40);
+
 
     connect(addBoxButton, &QPushButton::clicked, [=]() {
         bool ok;
         QString name = QInputDialog::getText(this, "Add Box", "Name:", QLineEdit::Normal, "", &ok);
         if (ok && !name.isEmpty()) {
-            BoxWidget *box = new BoxWidget(this);
+            BoxWidget *box = new BoxWidget(m_pane);
             box->setName(name);
             box->setPosition(QPoint(100, 200));
             box->show();
         }
     });
+}
+
+void MainWindow::resizeEvent(QResizeEvent *event){
+    m_pane->setGeometry(this->width()/3, 10, (this->width()/3)*2, this->height() - 20);
 }
 
 void MainWindow::mousePressEvent(QMouseEvent *event)

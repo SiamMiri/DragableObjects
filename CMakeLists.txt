@@ -18,6 +18,8 @@ set(PROJECT_SOURCES
         mainwindow.h
         boxwidget.cpp
         boxwidget.h
+        pane.h
+        pane.cpp
         mainwindow.ui
 )
 
