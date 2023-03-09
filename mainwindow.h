@@ -4,6 +4,7 @@
 #include <QMainWindow>
 #include <QLayout>
 #include <QInputDialog>
+#include <QMessageBox>
 #include <QPushButton>
 #include <QMouseEvent>
 #include <QResizeEvent>

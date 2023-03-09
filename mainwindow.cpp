@@ -16,11 +16,20 @@ MainWindow::MainWindow(QWidget *parent)
     connect(addBoxButton, &QPushButton::clicked, [=]() {
         bool ok;
         QString name = QInputDialog::getText(this, "Add Box", "Name:", QLineEdit::Normal, "", &ok);
-        if (ok && !name.isEmpty()) {
-            BoxWidget *box = new BoxWidget(m_pane);
-            box->setName(name);
-            box->setPosition(QPoint(100, 200));
-            box->show();
+
+        BoxWidget *object = m_pane->findChild<BoxWidget *>(name);
+
+        if (object){
+            QMessageBox::information(this, "Error", "The given name exist.");
+
+        }else{
+            if (ok && !name.isEmpty()) {
+                BoxWidget *box = new BoxWidget(m_pane);
+                box->setName(name);
+                box->setPosition(QPoint(100, 200));
+                box->setObjectName(name);
+                box->show();
+            }
         }
     });
 }
