@@ -12,15 +12,24 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 find_package(QT NAMES Qt6 Qt5 REQUIRED COMPONENTS Widgets)
 find_package(Qt${QT_VERSION_MAJOR} REQUIRED COMPONENTS Widgets)
 
+# Set the source directory
+set(SOURCE_DIR ${CMAKE_SOURCE_DIR}/src)
+set(INCLUDE_DIR ${CMAKE_SOURCE_DIR}/include)
+set(FORMS_DIR ${CMAKE_SOURCE_DIR}/forms)
+
+include_directories(${INCLUDE_DIR})
+include_directories(${SOURCE_DIR})
+include_directories(${FORMS_DIR})
+
 set(PROJECT_SOURCES
         main.cpp
-        mainwindow.cpp
-        mainwindow.h
-        boxwidget.cpp
-        boxwidget.h
-        pane.h
-        pane.cpp
-        mainwindow.ui
+        ${SOURCE_DIR}/boxwidget.cpp
+        ${SOURCE_DIR}/pane.cpp
+        ${SOURCE_DIR}/mainwindow.cpp
+        ${INCLUDE_DIR}/mainwindow.h #${INCLUDE_DIR}/
+        ${INCLUDE_DIR}/boxwidget.h
+        ${INCLUDE_DIR}/pane.h
+        ${INCLUDE_DIR}/mainwindow.ui
 )
 
 if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
