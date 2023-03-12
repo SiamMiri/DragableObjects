@@ -3,6 +3,8 @@
 
 #include <QObject>
 #include <QWidget>
+#include <QLabel>
+#include <QDebug>
 
 class BoxWidget : public QWidget
 {
@@ -10,6 +12,7 @@ class BoxWidget : public QWidget
 
 public:
     BoxWidget(QWidget *parent = nullptr);
+    ~BoxWidget();
 
     QString name() const;
     void setName(const QString &name);
@@ -24,6 +27,7 @@ protected:
     void mouseReleaseEvent(QMouseEvent *event) override;
 
 private:
+    QLabel *label;
     QPoint m_dragStart; // declare m_dragStart as a member variable
     QString m_name;
     QPoint m_position;

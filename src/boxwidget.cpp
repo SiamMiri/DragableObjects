@@ -7,11 +7,12 @@ BoxWidget::BoxWidget(QWidget *parent)
     : QWidget(parent)
 {
     setFixedSize(50, 50);
-    QLabel *label = new QLabel(this);
+    label = new QLabel(this);
     label->setText(m_name);
     label->setAlignment(Qt::AlignCenter);
     label->move(10, 10);
 }
+
 
 QString BoxWidget::name() const
 {
@@ -21,7 +22,7 @@ QString BoxWidget::name() const
 void BoxWidget::setName(const QString &name)
 {
     m_name = name;
-    QLabel *label = findChild<QLabel *>();
+    label = findChild<QLabel *>();
     if (label)
         label->setText(name);
 }
@@ -70,4 +71,10 @@ void BoxWidget::mouseReleaseEvent(QMouseEvent *event)
         m_dragging = false;
         emit positionChanged(pos());
     }
+}
+
+BoxWidget::~BoxWidget()
+{
+    delete label;
+    qDebug() << "BoxWidget Destructed\n" ;
 }

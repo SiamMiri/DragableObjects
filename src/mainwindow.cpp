@@ -2,7 +2,9 @@
 
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
+    , ui(new Ui::MainWindow)
 {
+    ui->setupUi(this);
     setMinimumSize(800, 400);
     setMouseTracking(true); // Enable mouse move events
     QPushButton *addBoxButton = new QPushButton("Add Box", this);
@@ -53,7 +55,7 @@ void MainWindow::mousePressEvent(QMouseEvent *event)
 
                     } else {
                         // Delete the line widget if it doesn't connect to any other box
-                        qDebug() << "Passed";
+//                        qDebug() << "Passed";
                     }
 
                     // Disconnect the line widget from the mouse move and mouse release events
@@ -82,5 +84,7 @@ void MainWindow::mouseMoveEvent(QMouseEvent *event)
 
 MainWindow::~MainWindow()
 {
+    delete m_pane;
     delete ui;
+    qDebug() << "MainWindow Destructed\n" ;
 }

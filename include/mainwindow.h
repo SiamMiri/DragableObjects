@@ -8,14 +8,14 @@
 #include <QPushButton>
 #include <QMouseEvent>
 #include <QResizeEvent>
-#include <QtWidgets/QLabel>
-#include <QtWidgets/QPushButton>
-#include <QtWidgets/QScrollBar>
+#include <QLabel>
+#include <QScrollBar>
+#include <QDebug>
 
 #include "boxwidget.h"
-#include "mainwindow.h"
-#include "ui_mainwindow.h"
 #include "pane.h"
+#include "./ui_mainwindow.h"
+
 
 
 QT_BEGIN_NAMESPACE
